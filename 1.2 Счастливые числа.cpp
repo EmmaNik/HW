@@ -1,5 +1,4 @@
 #include <iostream>
-
 using namespace std;
 
 int Sum(int n) {
@@ -12,30 +11,28 @@ int Sum(int n) {
     return sum;
 }
 
-
 int happy(int n) {
-    int slow = n;
-    int fast = n;
-
     do {
-        slow = Sum(slow);
-        fast = Sum(Sum(fast));
-    } while (slow != fast);
-
-    if (slow == 1) return 1;
-    else return -1;
+        n = Sum(n); // Продвигаемся на следующее число
+    } while (n != 1 && n != 4); // Цикл до тех пор, пока не встретим 1 (счастливое число) или 4 (цикл не содержащий 1)
+    
+    if (n == 1) {
+        return 1; // Если число счастливое
+    } else {
+        return -1; // Иначе, число не счастливое
+    }
 }
   
 int main() {
-  int n;
-  cout << "Enter a number: ";
-  cin >> n;
+    int n;
+    cout << "Enter a number: ";
+    cin >> n;
 
-  if (happy(n) == 1) {
-    cout << n << " is a happy number" << endl;
-  } else {
-    cout << n << " is not a happy number" << endl;
-  }
+    if (happy(n) == 1) {
+        cout << n << " счастливое число" << endl;
+    } else {
+        cout << n << " не является счастливым" << endl;
+    }
 
-  return 0;
+    return 0;
 }
